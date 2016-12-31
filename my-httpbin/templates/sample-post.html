@@ -1,0 +1,37 @@
+<form action="/post" method="post">
+	<p>
+		<span>Customer name:</span>
+		<input type="text" name="customer-name">
+	</p>
+	<p>
+		<span>Telephone:</span>
+		<input type="text" name="telephone">
+	</p>
+	<p>
+		<span>E-mail address:</span>
+		<input type="email" name="email">
+	</p>
+	<fieldset>
+		<legend>Pizza Size</legend>
+		<input type="radio" name="pizza-size" value="Small">Small<br>
+		<input type="radio" name="pizza-size" value="Medium">Medium<br>
+		<input type="radio" name="pizza-size" value="Large">Large<br>
+	</fieldset>
+	<fieldset>
+		<legend>Pizza Toppings</legend>
+		<input type="checkbox" name="pizza-toppings" value="Bacon">Bacon<br>
+		<input type="checkbox" name="pizza-toppings" value="Extra Chees">Extra Chees<br>
+		<input type="checkbox" name="pizza-toppings" value="Onion">Onion<br>
+		<input type="checkbox" name="pizza-toppings" value="Mushroom">Mushroom<br>
+	</fieldset>
+	<p>
+		Preferred delivery time:
+		<input type="time" name="delivery-time">
+	</p>
+	<p>
+		Delivery instructions:
+		<textarea rows="3" cols="18" name="delivery-instruction"></textarea>
+	</p>
+	<p><input type="submit" value="Submit order"></p>
+</form>
+

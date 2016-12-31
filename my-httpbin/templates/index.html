@@ -1,0 +1,124 @@
+<h1>My httpbin Demo</h1>
+<h2>--clone from <a href="https://github.com/Runscope/httpbin">Runscope</a></h2>
+<h4>httpbin(1): HTTP Request &#38; Response Service</h4>
+<p>Free hosted in HTTP, HTTPS &#38; EU flavors.</p>
+<h4>ENDPOINTS</h4>
+<p><a href="{{ url_for('.index') }}">/</a>&nbsp;&nbsp;&nbsp;&nbsp;This page.</span></p>
+<p><a href="{{ url_for('.ip') }}">/ip</a>&nbsp;&nbsp;&nbsp;&nbsp;Return Origin IP.</p>
+<p><a href="">/user-agent</a>&nbsp;&nbsp;&nbsp;&nbsp;Returns user-agent.</p>
+<p><a href="">/get</a>&nbsp;&nbsp;&nbsp;&nbsp;Returns GET data.</p>
+<p>/post&nbsp;&nbsp;&nbsp;&nbsp;Returns POST data</p>
+<p>/patch&nbsp;&nbsp;&nbsp;&nbsp;Returns PATCH data.</p>
+<p>/put&nbsp;&nbsp;&nbsp;&nbsp;Returns PUT data.</p>
+<p>/delete&nbsp;&nbsp;&nbsp;&nbsp;Returns DELETE data.</p>
+<p><a href="">/encoding/utf8</a>&nbsp;&nbsp;&nbsp;&nbsp;Returns page containing UTF-8 data.</p>
+<p><a href="">/gzip</a>&nbsp;&nbsp;&nbsp;&nbsp;Returns gzip-encoded data.</p>
+<p><a href="">/deflate</a>&nbsp;&nbsp;&nbsp;&nbsp;Returns delate-encoded data.</p>
+<p><a href="">/status/:code</a>&nbsp;&nbsp;&nbsp;&nbsp;Returns given HTTP Status code.</p>
+<p><a href="">/response-headers?key=val</a>&nbsp;&nbsp;&nbsp;&nbsp;Returns given response headers.</p>
+<p><a href="">/redirect/:n</a>&nbsp;&nbsp;&nbsp;&nbsp;302 Redirects n times</p>
+<p><a href="">/redirect-to?url=foo</a>&nbsp;&nbsp;&nbsp;&nbsp;302 Redirects to foo URL.</p>
+<p><a href="">/relative-rediret/:n</a>&nbsp;&nbsp;&nbsp;&nbsp;302 Relative redirects n times.</p>
+<p><a href="">/absolute-redirect/:n</a>&nbsp;&nbsp;&nbsp;&nbsp;302 Absolute redirects n times.</p>
+<p><a href="">/cookies</a>&nbsp;&nbsp;&nbsp;&nbsp;Returns cookie data.</p>
+<p><a href="">/cookies/set?name=value</a>&nbsp;&nbsp;&nbsp;&nbsp;Sets one or more simple cookies.</p>
+<p><a href="">/cookies/delete?name</a>&nbsp;&nbsp;&nbsp;&nbsp;Deletes one or more simple cookies.</p>
+<p><a href="">/basic-auth/:user/:passwd</a>&nbsp;&nbsp;&nbsp;&nbsp;Challenges HTTPBasic Auth.</p>
+<p><a href="">/hidden-basic-auth/:user/:passwd</a>&nbsp;&nbsp;&nbsp;&nbsp;404'd BasicAuth.</p>
+<p><a href="">/digest-auth/:qop/:user/:passwd</a>&nbsp;&nbsp;&nbsp;&nbsp;Challenges HTTP Digest Auth.</p>
+<p><a href="">/stream/:n</a>&nbsp;&nbsp;&nbsp;&nbsp;Streams min(n, 100) lines.</p>
+<p><a href="">/delay/:n</a>&nbsp;&nbsp;&nbsp;&nbsp;Delays responding for min(n, 10) seconds.</p>
+<p><a href="">/drip?numbytes=n&amp;duration=s&amp;delay=s&amp;code=code</a></p>
+<p><a href="">/range/1024?duration=s&amp;chunk_size=code</a>&nbsp;&nbsp;&nbsp;&nbsp;Streams n bytes and allows specifying a Range header to select a subset of the data. Accepts a chunk_size and request parameter.</p>
+<p><a href="">/html</a>&nbsp;&nbsp;&nbsp;&nbsp;Renders an HTML Page.</p>
+<p><a href="">/robots.txt</a>&nbsp;&nbsp;&nbsp;&nbsp;Returns some robots.txt rules.</p>
+<p><a href="">/deny</a>&nbsp;&nbsp;&nbsp;&nbsp;Denied by robots.txt file.</p>
+<p><a href="">/cache</a>&nbsp;&nbsp;&nbsp;&nbsp;Returns 200 unless an If-Modified-Since or If-None-Match header is provided, when it returns a 304.</p>
+<p><a href="">/cache/:n</a>&nbsp;&nbsp;&nbsp;&nbsp;Set a Cache-Control header for n seconds.</p>
+<p><a href="">/bytes/:n</a>&nbsp;&nbsp;&nbsp;&nbsp;Generates n random bytes of binary data, accepts optional seed integer parameter.</p>
+<p><a href="">/stream-bytes/:n</a>&nbsp;&nbsp;&nbsp;&nbsp;Streams n random bytes of binary data, accepts optional seed integer parameter.</p>
+<p><a href="">/links/:n</a>&nbsp;&nbsp;&nbsp;&nbsp;Returns page containing n HTML links.</p>
+<p><a href="">/image</a>&nbsp;&nbsp;&nbsp;&nbsp;Returns page containing an image based on sent Accept header.</p>
+<p><a href="">/image/png</a>&nbsp;&nbsp;&nbsp;&nbsp;Returns page containing a PNG image.</p>
+<p><a href="">/image/jpeg</a>&nbsp;&nbsp;&nbsp;&nbsp;Returns page containing a JPEG image.</p>
+<p><a href="">/image/webp</a>&nbsp;&nbsp;&nbsp;&nbsp;Returns page containing a WEBP image.</p>
+<p><a href="">/image/svg</a>&nbsp;&nbsp;&nbsp;&nbsp;Returns page containing a SVG image.</p>
+<p><a href="">/forms/post</a>&nbsp;&nbsp;&nbsp;&nbsp;HTML form that submits to /post.</p>
+<p><a href="">/xml</a>&nbsp;&nbsp;&nbsp;&nbsp;Returns some XML</p>
+
+<h4>DESCRIPTION</h4>
+<p>Testing an HTTP Library can become difficult somtimes. RequestBin is fantastic for testing POST request, but doesn't let you control the response. This exists to cover all kinds of HTTP scenarios. Additional endpoints are being considered.</p>
+<p>All endpoint responses are JSON-encoded.</p>
+
+<h4>EXAMPLES</h4>
+<pre>
+<code>
+	$ curl http://httpbin.org/ip</code>
+		{"origin": "24.127.96.129"}	
+
+	$ curl http://httpbin.org/user-agent
+		{"user-agent": "curl/7.19.7 (universal-apple-darwin10.0) libcurl/7.19.7 OpenSSL/0.9.81 zlib/1.2.3"}
+
+	$ curl http://httpbin.org/get
+		{
+			"args": {},
+			"headers": {
+				"Accept": "*/*",
+				"Connection": "close",
+				"Content-Length": "",
+				"Content-Type": "",
+				"Host": "httpbin.org",
+				"User-Agent": "curl/7.19.7 (universal-apple-darwin10.0) libcurl/7.19.7 OpenSSL/0.9.81 zlib/1.2.3",
+			},
+			"origin": "24.127.96.129",
+			"url": "http://httpbin.org.get"
+		}
+
+	$ curl https://httbin.org/get?show_env=1
+		{
+			"headers": {
+				"Content-Length": "",
+				"Accept-Language": "en-US,en;q=0.8",
+				"Accept-Encoding": "gzip,deflate,sdch",
+				"X-Forwarded-Port": "443",
+				"X-Forwarded-For": "109.60.101.240",
+				"Host": "httpbin.org",
+				"Accept": "text/html,application/xhtml+xml.application/xml;q=0.9,*/*;q=0.8",
+				"User-Agent": "Mozilla/5.0 (X11; Linux i686) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.83 Safari/535.11",
+				"X-Request-Start": "1350053933441",
+				"Accept-Charset": "ISO-8859-1,utf-8;q=0.7,*;q=0.3",
+				"Connection": "keep-alive",
+				"X-Forwarded-Proto": "https",
+				"Cookied": "_gauges_unique_day=1; _gauges_unique_month=1; _gauges_unique_year=1; _gauges_unique=1; _gauges_unique_day=1",
+				"Content-Type": ""
+			},
+			"args": {
+				"show_env": "1"
+			},
+			"origin": "109.60.101.240",
+			"url": "http://httpbin.org/get?show_env=1"
+		}
+</pre>
+
+<h4>Installing and running form PyPI</h4>
+<p>You can install httpbin as a library from PyPI and run it as a WSGI app. For example, using Gunicorn:
+<pre>
+	$ pip install httpbin
+	$ gunicorn httpn:app	
+</pre>
+</p>
+
+<h4>Changelog</h4>
+<p>0.2.0: Added an XML endpoint. Also fixes several bugs with unicode, CORS headers, digest auth, and more.</p>
+<p>0.1.2: Fix a couple Python3 bugs with the random byte endpoints, fix a bug when uploading files without a Content-Type header set.</p>
+<p>0.1.1: Added templates as data in setup.py</p>
+<p>0.1.0: Added python3 support and (re)publish on PyPI.</p>
+
+<h4>AUTHOR</h4>
+<p>A Runscope Community Project.</p>
+<p>Originally created by Kenneth Reitz.</p>
+
+<h4>SEE ALSO</h4>
+<p>Hurl.it - Make HTTP requests.</p>
+<p>RequestBin - Inspect HTTP requests.</p>
+<p><a href="http://python-requests.org">http://python-requests.org</a></p>
